@@ -6,7 +6,7 @@ export function Home() {
   return (
     <Container>
       <h1>Bienvenido al Home {user.full_name}</h1>
-      <img src={user.avatar_url}/>
+      <img src={user.picture}/>
       <button onClick={signout}>Cerrar</button>
     </Container>
   );
