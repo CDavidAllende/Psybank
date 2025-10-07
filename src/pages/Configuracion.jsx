@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ConfiguracionTemplate, Fondo1 } from "../index";
+import { ConfiguracionTemplate } from "../index";
 export function Configuracion() {
   return (
     <Container>
