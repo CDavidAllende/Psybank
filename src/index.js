@@ -1,8 +1,11 @@
 export { default as App } from './App';
+export * from './components/atomos/ColorContent';
 export * from './components/atomos/ContentHeader';
 export * from './components/atomos/icono';
 export * from './components/moleculas/BtnCircular';
 export * from './components/moleculas/Btnsave';
+export * from './components/moleculas/ItemsDesplegable';
+export * from './components/moleculas/ListaMenuDespegable';
 export * from './components/organismos/DataUser';
 export * from './components/organismos/Header';
 export * from './components/organismos/Menuambur';
