@@ -4,9 +4,7 @@ export function Header({ stateConfig }) {
   return (
     <ContentHeader>
       <div
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
+        onClick={(e) => {e.stopPropagation();}}
       >
         <DataUser stateConfig={stateConfig} />
       </div>

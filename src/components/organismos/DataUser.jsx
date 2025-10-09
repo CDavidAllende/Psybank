@@ -1,12 +1,6 @@
 import styled from "styled-components";
-import {
-  UserAuth,
-  BtnCircular,
-  v,
-  ListaMenuDesplegable,
-  DesplegableUser,
-  useAuthStore,
-} from "../../index";
+import {UserAuth,BtnCircular,v,ListaMenuDesplegable,DesplegableUser,useAuthStore,} from "../../index";
+
 export function DataUser({ stateConfig }) {
   const { user } = UserAuth();
   const { signout } = useAuthStore();
