@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import { Header,Selector,v } from "../../index";
+import { Header,ListaPaises,Selector,v } from "../../index";
 import { useState } from "react";
 
 export function ConfiguracionTemplate() {
+  const [select, setSelect] = useState([]);
   const [state, setState] = useState(false);
   const [stateListaPaises, setStateListaPaises] = useState(false);
 
@@ -17,7 +18,13 @@ export function ConfiguracionTemplate() {
       <section className="area2">
         <ContentCard>
           <span>Moneda:</span>
-          <Selector state={setStateListaPaises} color={v.colorselector}/>
+          <Selector state={setStateListaPaises} color={v.colorselector} funcion={() =>setStateListaPaises(!stateListaPaises)}/>
+          {
+            stateListaPaises && (
+              <ListaPaises setSelect={(p) =>setSelect(p)} 
+              setState={() =>setStateListaPaises(!stateListaPaises)}/>
+            )
+          }
         </ContentCard>
       </section>
       <section className="main"></section>
