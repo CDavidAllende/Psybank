@@ -1,9 +1,10 @@
-import { MyRoutes, Sidebar, Device, Light, Dark, AuthContextProvider, Menuambur } from "./index";
+import { MyRoutes, Sidebar, Device, Light, Dark, AuthContextProvider, Menuambur, useUsuariosStore } from "./index";
 import { createContext, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { styled } from "styled-components";
 import { useLocation } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 export const ThemeContext = createContext(null);
 function App() {
@@ -11,7 +12,14 @@ function App() {
   const [theme, setTheme] = useState("dark");
   const themeStyle = theme === "light" ? Light : Dark;
   const [sidebarOpen, setSidebarOpen] = useState(true);
-
+  const {mostrarUsuarios} = useUsuariosStore();
+  const { isLoading, error } = useQuery({queryKey: ["mostrar usuarios"],queryFn:() =>mostrarUsuarios ()});  
+  if (isLoading) {
+    return <h1>Cargando...</h1>
+  }
+  if(error){
+    return <h1>Error...</h1>
+  }
   return (
     <>
       <ThemeContext.Provider value={{ setTheme, theme }}>
