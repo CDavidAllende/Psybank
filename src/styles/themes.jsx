@@ -1,4 +1,5 @@
 export const Light ={
+    rgbafondoanimado:"rgba(102, 102, 102, 0.2)",
     body: "#fff",
     text: "#202020",
     bodyRgba: "255, 255, 255",
@@ -35,6 +36,8 @@ export const Light ={
 
 }
 export const Dark = {
+    rgbafondoanimado:"rgba(198, 198, 198, 0.2)",
+    bgtgderecha:"#21252B",
     bgtgderecha:"#21252B",
     body: "#202020",
     text: "#fff",

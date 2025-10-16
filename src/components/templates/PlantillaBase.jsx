@@ -6,7 +6,9 @@ export function PlantillaBase() {
   return (
     <Container>
       <header className="header">
-        <Header stateConfig={{ state: state, setState: ()=>setState(!state) }} />
+        <Header
+          stateConfig={{ state: state, setState: () => setState(!state) }}
+        />
       </header>
       <section className="area1"></section>
       <section className="area2"></section>

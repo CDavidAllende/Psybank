@@ -1,8 +1,13 @@
 import styled from "styled-components";
-import {v,InputBuscadorLista,ConvertirCapitalize,Device,BtnCerrar,} from "../../index";
+import {
+  v,
+  InputBuscadorLista,
+  ConvertirCapitalize,
+  Device,
+  BtnCerrar,
+} from "../../index";
 import iso from "iso-country-currency";
 import { useState } from "react";
-
 export function ListaPaises({ setSelect, setState }) {
   const isocodigos = iso.getAllISOCodes();
   const [dataresult, setDataresult] = useState([]);
@@ -45,26 +50,11 @@ const Container = styled.div`
   flex-direction: column;
   background: ${({ theme }) => theme.body};
   border-radius: 10px;
-  border: 3px solid #3a3a3a;
+ 
   padding: 10px;
   gap: 10px;
   color: ${({ theme }) => theme.text};
   z-index: 3;
-  .header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: inherit;
-    .close{
-      cursor: pointer;
-      font-size: 25px;
-      transition: all 0.2s;
-      &:hover{
-        color: ${()=>v.colorselector};
-        transform: scale(1.2);
-      }
-    }
-  }
   @media ${() => Device.tablet} {
     width: 400px;
   }
