@@ -12,6 +12,7 @@ import {
   RegistrarCategorias
 } from "../../index";
 import { useState } from "react";
+
 export function CategoriasTemplate({ data }) {
   const [openRegistro, SetopenRegistro] = useState(false);
   const [accion, setAccion] = useState("");
