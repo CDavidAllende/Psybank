@@ -15,6 +15,7 @@ import { ThemeProvider } from "styled-components";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { styled } from "styled-components";
 import { useQuery } from "@tanstack/react-query";
+
 export const ThemeContext = createContext(null);
 function App() {
   const { mostrarUsuarios, datausuarios } = useUsuariosStore();
