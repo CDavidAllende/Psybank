@@ -17,7 +17,7 @@ export function RegistrarCategorias({ onClose, dataSelect, accion }) {
   const { insertarCategorias, editarCategoria } = useCategoriasStore();
   const { datausuarios } = useUsuariosStore();
   const [showPicker, setShowPicker] = useState(false);
-  const [emojiselect, setEmojiselect] = useState("😻");
+  const [emojiselect, setEmojiselect] = useState("🐥");
   const [currentColor, setColor] = useState("#F44336");
 
   const [estadoProceso, setEstadoproceso] = useState(false);

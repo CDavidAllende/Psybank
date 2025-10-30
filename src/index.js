@@ -15,6 +15,7 @@ export * from './components/moleculas/ListaMenuDespegable';
 export * from './components/moleculas/Spinner';
 export * from './components/moleculas/SpinnerLoader';
 export * from './components/moleculas/fondosAnimados/Fondo1';
+export * from './components/organismos/CardEliminarData';
 export * from './components/organismos/DataUser';
 export * from './components/organismos/Header';
 export * from './components/organismos/ListaPaises';

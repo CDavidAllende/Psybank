@@ -9,6 +9,7 @@ import {
   TemasData,
   Btnsave,
   Fondo1,
+  CardEliminarData
 } from "../../index";
 import { useState } from "react";
 
@@ -88,6 +89,7 @@ export function ConfiguracionTemplate() {
           icono={<v.iconoguardar />}
           funcion={editar}
         />
+        <CardEliminarData />
       </section>
     </Container>
   );

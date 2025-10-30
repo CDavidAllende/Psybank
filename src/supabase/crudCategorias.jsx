@@ -1,5 +1,6 @@
 import { supabase } from "../index";
 import Swal from "sweetalert2";
+
 export async function InsertarCategorias(p) {
   try {
     const { data, error } = await supabase
@@ -11,7 +12,7 @@ export async function InsertarCategorias(p) {
         icon: "error",
         title: "Oops...",
         text: "Ya existe un registro con " + p.descripcion,
-        footer: '<a href="">Agregue una nueva descripcion</a>',
+        footer: '<a href="">Agregua una nueva descripcion</a>',
       });
     }
     if (data) {
@@ -24,7 +25,7 @@ export async function InsertarCategorias(p) {
       });
     }
   } catch (error) {
-    alert(error.error_description || error.message + " insertar categorias");
+    alert(error.error_description || error.message + " Insertar categorias");
   }
 }
 export async function MostrarCategorias(p) {
@@ -49,7 +50,7 @@ export async function EliminarCategorias(p) {
       alert("Error al eliminar", error);
     }
   } catch (error) {
-    alert(error.error_description || error.message + " eliminar categorias");
+    alert(error.error_description || error.message + " Eliminar categorias");
   }
 }
 export async function EditarCategorias(p) {
@@ -63,6 +64,6 @@ export async function EditarCategorias(p) {
       alert("Error al editar categoria", error);
     }
   } catch (error) {
-    alert(error.error_description || error.message + " editar categorias");
+    alert(error.error_description || error.message + " Editar categorias");
   }
 }

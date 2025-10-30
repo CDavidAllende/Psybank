@@ -19,8 +19,8 @@ export function CategoriasTemplate({ data }) {
   const [dataSelect, setdataSelect] = useState([]);
   const [state, setState] = useState(false);
   const [stateTipo, setStateTipo] = useState(false);
-  const { colorCategoria, tituloBtnDes, bgCategoria, setTipo } =
-    useOperaciones();
+  const { colorCategoria, tituloBtnDes, bgCategoria, setTipo } = useOperaciones();
+  
   function cambiarTipo(p) {
     setTipo(p);
     setStateTipo(!stateTipo);

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { v } from "../../index";
+
 export function Btndesplegable({ text, bgcolor, textcolor, funcion }) {
   return (
     <Container $bgcolor={bgcolor} $textcolor={textcolor} onClick={funcion}>

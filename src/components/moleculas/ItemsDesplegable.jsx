@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Icono,Colorcontent } from "../../index";
+
 export function ItemsDesplegable({ item,funcion }) {
   return (
     <Container onClick={funcion}>
@@ -9,6 +10,7 @@ export function ItemsDesplegable({ item,funcion }) {
     </Container>
   );
 }
+
 const Container = styled.div`
   cursor: pointer;
   padding: 8px;

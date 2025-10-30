@@ -28,9 +28,9 @@ export function TablaCategorias({
 
   function eliminar(p) {
     Swal.fire({
-      title: "¿Estás seguro(a)(e)?",
-      text: "Una vez eliminado, ¡no podrá recuperar este registro!",
-      icon: "warning",
+      title: "¿Estás seguro?",
+      text: "Una vez eliminado, ¡No podrá recuperar este registro!",
+      icon: "!! Warning ¡¡",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",

@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { v } from "../styles/variables";
+
 export const useOperaciones = create((set, get) => ({
   tipo: "i",
   tituloBtnDes: "Categorias ingresos",
