@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import { Header, CalendarioLineal } from "../../index";
+import dayjs from "dayjs";
 import { useState } from "react";
+
 export function MovimientosTemplate() {
+  const [value,setValue] = useState(dayjs(Date.now()));
+  const [formatoFecha, setFormatoFecha] = useState("");
   const [state, setState] = useState(false);
   return (
     <Container>
@@ -12,7 +16,7 @@ export function MovimientosTemplate() {
       </header>
       <section className="area1"></section>
       <section className="calendario">
-        
+        <CalendarioLineal value={value} setValue={setValue} formatofecha={formatoFecha} setFormatoFecha={setFormatoFecha}/>
       </section>
       <section className="main"></section>
     </Container>
@@ -28,7 +32,7 @@ const Container = styled.div`
   grid-template:
     "header" 100px
     "area1" 100px
-    "calendario" 50px
+    "calendario" 100px
     "main" auto;
 
   .header {
@@ -48,6 +52,7 @@ const Container = styled.div`
     background-color: rgba(77, 237, 106, 0.14);
     display: flex;
     align-items: center;
+    justify-content: center;
   }
   .main {
     grid-area: main;
