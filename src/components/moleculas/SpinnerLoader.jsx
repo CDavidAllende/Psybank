@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { HashLoader } from "react-spinners";
 import { useOperaciones } from "../../index";
+
 export function SpinnerLoader() {
   const { colorCategoria } = useOperaciones();
   return (

@@ -21,4 +21,5 @@ export const useAuthStore = create((set) => ({
     if (error)
       throw new Error("A ocurrido un error durante el cierre de sesión");
   },
+
 }));

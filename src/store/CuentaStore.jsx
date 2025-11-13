@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { MostrarCuentas } from "../index";
+
 export const useCuentaStore = create((set, get) => ({
   cuentaItemSelect: [],
   datacuentas: [],

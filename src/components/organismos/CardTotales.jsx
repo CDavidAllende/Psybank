@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { v, useUsuariosStore, BtnCircular } from "../../index";
+
 export function CardTotales({ color, total, title, icono }) {
   const { datausuarios } = useUsuariosStore();
   return (

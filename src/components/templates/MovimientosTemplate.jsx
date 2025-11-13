@@ -84,7 +84,6 @@ export function MovimientosTemplate() {
   queryKey: ["mostrar categorias", { idusuario, tipo }],
   queryFn: () => mostrarCategorias({ idusuario, tipo }),
 });
-
   return (
     <Container>
       {openRegistro && (

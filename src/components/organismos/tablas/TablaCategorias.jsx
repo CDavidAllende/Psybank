@@ -7,30 +7,24 @@ import {
 import Swal from "sweetalert2";
 import { v } from "../../../styles/variables";
 import { useState } from "react";
-
 export function TablaCategorias({
   data,
   SetopenRegistro,
   setdataSelect,
   setAccion,
 }) {
+ if(data.length==0) return;
   const [pagina, setPagina] = useState(1);
   const [porPagina, setPorPagina] = useState(10);
-
-  // ✅ Si data es null o undefined, usa []
-  const safeData = Array.isArray(data) ? data : [];
-
-  // ✅ Calcula valores solo con safeData
-  const mx = safeData.length / porPagina;
+  const mx = data.length / porPagina;
   const maximo = mx < 1 ? 1 : mx;
 
   const { eliminarCategoria } = useCategoriasStore();
-
   function eliminar(p) {
     Swal.fire({
-      title: "¿Estás seguro?",
-      text: "Una vez eliminado, ¡No podrá recuperar este registro!",
-      icon: "!! Warning ¡¡",
+      title: "¿Estás seguro(a)(e)?",
+      text: "Una vez eliminado, ¡no podrá recuperar este registro!",
+      icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
@@ -41,64 +35,57 @@ export function TablaCategorias({
       }
     });
   }
-
   function editar(data) {
     SetopenRegistro(true);
     setdataSelect(data);
     setAccion("Editar");
   }
-
-  // ✅ Mostrar mensaje si no hay datos
-  if (safeData.length === 0) {
-    return (
-      <Container>
-        <p style={{ textAlign: "center", marginTop: "2rem" }}>
-          No hay categorías disponibles.
-        </p>
-      </Container>
-    );
-  }
-
   return (
-    <Container>
-      <table className="responsive-table">
-        <thead>
-          <tr>
-            <th scope="col">Descripcion</th>
-            <th scope="col">Icono</th>
-            <th scope="col">Color</th>
-            <th scope="col">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {safeData
-            .slice((pagina - 1) * porPagina, (pagina - 1) * porPagina + porPagina)
-            .map((item) => (
-              <tr key={item.id}>
-                <th scope="row">{item.descripcion}</th>
-                <td data-title="Icono">{item.icono}</td>
-                <td data-title="Color" className="Colordiv">
-                  <div className="ColorContent">
-                    <Colorcontent
-                      color={item.color}
-                      $alto="25px"
-                      $ancho="25px"
-                    />
-                  </div>
-                </td>
-                <td data-title="Acciones">
-                  <ContentAccionesTabla
-                    funcionEditar={() => editar(item)}
-                    funcionEliminar={() => eliminar(item)}
-                  />
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
-
-      <Paginacion pagina={pagina} setPagina={setPagina} maximo={maximo} />
-    </Container>
+    <>
+      <Container>
+        <table className="responsive-table">
+          <thead>
+            <tr>
+              <th scope="col">Descripcion</th>
+              <th scope="col">Icono</th>
+              <th scope="col">Color</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data
+              .slice(
+                (pagina - 1) * porPagina,
+                (pagina - 1) * porPagina + porPagina
+              )
+              .map((item, index) => {
+                return (
+                  <tr key={item.id}>
+                    <th scope="row">{item.descripcion}</th>
+                    <td data-title="Icono">{item.icono}</td>
+                    <td data-title="Color" className="Colordiv">
+                      <div className="ColorContent">
+                        <Colorcontent
+                          color={item.color}
+                          $alto="25px"
+                          $ancho="25px"
+                        />
+                      </div>
+                    </td>
+                    <td data-title="Acciones">
+                      <ContentAccionesTabla
+                        funcionEditar={() => editar(item)}
+                        funcionEliminar={() => eliminar(item)}
+                      />
+                    </td>
+                  </tr>
+                );
+              })}
+          </tbody>
+        </table>
+        <Paginacion pagina={pagina} setPagina={setPagina} maximo={maximo} />
+      </Container>
+    </>
   );
 }
 const Container = styled.div`
@@ -219,7 +206,7 @@ const Container = styled.div`
         }
       }
       td {
-        text-align: left;
+        text-align: right;
         @media (min-width: ${v.bpbart}) {
           border-bottom: 1px solid rgba(161, 161, 161, 0.32);
           text-align: center;

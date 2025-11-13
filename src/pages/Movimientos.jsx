@@ -1,9 +1,5 @@
 import styled from "styled-components";
-import {MovimientosTemplate} from "../index"
-
+import { MovimientosTemplate } from "../index";
 export function Movimientos() {
-  return (<MovimientosTemplate/>);
+  return <MovimientosTemplate />;
 }
-const Container =styled.div`
-  
-` 
