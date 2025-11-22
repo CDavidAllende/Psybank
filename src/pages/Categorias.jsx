@@ -13,9 +13,13 @@ export function Categorias() {
   const { tipo } = useOperaciones();
   const { datacategoria, mostrarCategorias } = useCategoriasStore();
   const { datausuarios } = useUsuariosStore();
-  const { isLoading, error } = useQuery(["mostrar categorias", tipo], () =>
-    mostrarCategorias({ idusuario: datausuarios.id, tipo: tipo })
-  );
+
+  const { isLoading, error } = useQuery({
+    queryKey: ["mostrar categorias", tipo],
+    queryFn: () =>
+      mostrarCategorias({ idusuario: datausuarios.id, tipo: tipo }),
+  });
+
   if (isLoading) {
     return <SpinnerLoader />;
   }
@@ -25,10 +29,7 @@ export function Categorias() {
 
   return (
     <>
-      
-      <CategoriasTemplate data={datacategoria}>
-       
-      </CategoriasTemplate>
+      <CategoriasTemplate data={datacategoria}></CategoriasTemplate>
     </>
   );
 }

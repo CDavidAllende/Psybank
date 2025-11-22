@@ -7,13 +7,16 @@ export const InsertarMovimientos = async (p) => {
       .insert(p)
       .select();
     if (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Ya existe un registro con " + p.descripcion,
-        footer: '<a href="">Agregue una nueva descripcion</a>',
-      });
-    }
+  console.log("INSERT ERROR =>", error);
+
+  Swal.fire({
+    icon: "error",
+    title: "Error al insertar",
+    text: error.message || "Ocurrió un error desconocido",
+  });
+
+  return;
+}
     if (data) {
       Swal.fire({
         icon: "success",
@@ -41,7 +44,7 @@ export async function EliminarMovimientos(p) {
 }
 export async function MostrarMovimientosPorMesAño(p) {
   try {
-    const { data } = await supabase.rpc("mmovimientosmesanio", {
+    const { data } = await supabase.rpc("movimientosmesanio", {
       anio: p.año,
       mes: p.mes,
       iduser: p.idusuario,

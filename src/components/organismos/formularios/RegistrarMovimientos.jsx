@@ -45,7 +45,7 @@ export function RegistrarMovimientos({ setState, state, dataSelect, accion }) {
       descripcion: data.descripcion,
       idcuenta: cuentaItemSelect.id,
       valor: parseFloat(data.monto),
-      idcategoria: categoriaItemSelect.id,
+      idcategorias: categoriaItemSelect.id,
     };
 
 

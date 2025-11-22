@@ -38,7 +38,6 @@ export const Light ={
 export const Dark = {
     rgbafondoanimado:"rgba(198, 198, 198, 0.2)",
     bgtgderecha:"#21252B",
-    bgtgderecha:"#21252B",
     body: "#202020",
     text: "#fff",
     bodyRgba: "32,32,32",
