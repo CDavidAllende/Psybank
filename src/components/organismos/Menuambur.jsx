@@ -1,10 +1,11 @@
 import { useState } from "react";
 import {v} from "../../styles/variables"
 import styled from "styled-components";
-import {LinksArray} from "../../index";
+import {LinksArray,SecondarylinksArray} from "../../index";
 import { NavLink } from "react-router-dom";
 
 export function Menuambur() {
+  const [click, setClick] = useState(false);
   return (
     <Container>
       <NavBar>
@@ -13,7 +14,7 @@ export function Menuambur() {
             <img src={v.logo} />
           </div>
         </HamburgerMenu>
-        <Menu>
+        <Menu click={click}>
           {LinksArray.map(({icon, label, to}) => (
             <div
               key={label}
@@ -26,6 +27,20 @@ export function Menuambur() {
               </NavLink>
             </div>
           ))}
+          <Divider>
+            {SecondarylinksArray.map(({icon, label, to }) =>(
+              <div
+              key={label}
+              className="LinkContainer"
+              onClick={() => setClick(!click)}
+            >
+              <NavLink to={to} className="Links">
+                <div className="Linkicon">{icon}</div>
+                <span>{label}</span>
+              </NavLink>
+            </div>
+            ))}
+          </Divider>
         </Menu>
       </NavBar>
     </Container>);
@@ -48,7 +63,7 @@ const HamburgerMenu = styled.span`
  width: ${(props) => (props.click ? "4rem" : "3.5rem")};
  height: ${(props) => (props.click ? "2px" : "5px")};
  border-radius: 3px;
- z-index: 10;
+ z-index: 12;
  position: fixed;
  top: 3rem;
  left: 0;
@@ -110,6 +125,31 @@ const Menu = styled.div`
           font-size: 25px;
         }
       }
+
+      &.active {
+        &::before {
+          position: relative;
+          content: "";
+          height: 100%;
+          left: 0;
+          width: 4px;
+          bottom: 0;
+          border-radius: 10px;
+          background: ${(props) => props.theme.bg5};
+          transition: 0.3s ease;
+        }
+        .Linkicon {
+          color: ${(props) => props.theme.bg5}
+        }
+      }
+
     }
   }
-`
+`;
+
+const Divider = styled.div`
+  height: 1px;
+  width: 100%;
+  background: ${(props) => props.theme.bg4};
+  margin: ${v.lgSpacing} 0;
+`;
