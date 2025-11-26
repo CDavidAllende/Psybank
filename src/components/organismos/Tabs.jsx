@@ -1,36 +1,84 @@
 import { useState } from "react";
 import styled from "styled-components";
-import {v} from "../../index"
+import { useQuery } from "@tanstack/react-query";
+import {v, Dona, useMovimientosStore, useOperaciones, useUsuariosStore } from "../../index"
 
 export function Tabs() {
     const [activeTab, setactiveTab] = useState(0);
     const handleClick = (index) => {
         setactiveTab(index);
     };
+const {idusuario} = useUsuariosStore();
+const {año,mes,tipo} = useOperaciones();
+const {dataRptMovimientosAñoMes, rptMovimientosAñoMes} = useMovimientosStore();
+
+const datagrafica = {
+  labels: dataRptMovimientosAñoMes?.map((item) =>item.descripcion),
+  datasets: [
+    {
+      label: 'Total',
+      data: dataRptMovimientosAñoMes?.map((item) =>item.total),
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)',
+      ],
+      borderWidth: 2,
+    },
+  ],
+};
+
+const { isLoading, error } = useQuery({
+  queryKey: ["Reporte movimientos"],
+  queryFn: () =>
+    rptMovimientosAñoMes({
+      año,
+      mes,
+      tipocategoria: tipo,
+      idusuario,
+    }),
+});
+    if (isLoading) {
+        return <h1>Cargando ...</h1>        
+    }
+    if(error){
+        return(<h1>Error</h1>)
+    }
     return (
         <Container className="container" activeTab={`${activeTab}00%`}>
             <ul className="tabs">
                 <li className={activeTab === 0 ? "active" : ""}
                  onClick={() => handleClick(0)}
                 >
-                    {<v.iconopie />}
+                    <v.iconopie />
                 </li>
                 <li className={activeTab === 1 ? "active" : ""}
                  onClick={() => handleClick(1)}
                 >
-                    {<v.iconolineal />}
+                    <v.iconolineal />
                 </li>
                 <li className={activeTab === 2 ? "active" : ""}
                  onClick={() => handleClick(2)}
                 >
-                    {<v.iconobars />}
+                    <v.iconobars />
                 </li>
 
                 <div className="glider" style={{ left: `${activeTab * 150}px` }}></div>
             </ul>
 
             <div className="tab-content">
-                {activeTab === 0 && <h1>Area 1</h1>}
+                {activeTab === 0 && <Dona datagrafica={datagrafica}/>}
                 {activeTab === 1 && <h1>Area 2</h1>}
                 {activeTab === 2 && <h1>Area 3</h1>}
             </div>

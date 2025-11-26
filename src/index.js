@@ -29,6 +29,7 @@ export * from './components/organismos/formularios/InputText';
 export * from './components/organismos/formularios/RegistarCategorias';
 export * from './components/organismos/formularios/RegistrarMovimientos';
 export * from './components/organismos/formularios/inputNumber';
+export * from './components/organismos/graficas/Dona';
 export * from './components/organismos/sidebar/Sidebar';
 export * from './components/organismos/sidebar/SiderbarCard';
 export * from './components/organismos/tablas/AccionesTabla';
