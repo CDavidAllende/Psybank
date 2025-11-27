@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query";
-import {v, Dona, useMovimientosStore, useOperaciones, useUsuariosStore } from "../../index"
+import {v, Dona, Lineal, useMovimientosStore, useOperaciones, useUsuariosStore } from "../../index"
 
 export function Tabs() {
     const [activeTab, setactiveTab] = useState(0);
@@ -13,10 +13,15 @@ const {año,mes,tipo} = useOperaciones();
 const {dataRptMovimientosAñoMes, rptMovimientosAñoMes} = useMovimientosStore();
 
 const datagrafica = {
+  type: "line",
   labels: dataRptMovimientosAñoMes?.map((item) =>item.descripcion),
   datasets: [
     {
-      label: 'Total',
+      fill: true,
+      tension: 0.3,
+      label: "Total",
+      borderRadius:10,
+      borderAlign: "inner",
       data: dataRptMovimientosAñoMes?.map((item) =>item.total),
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -40,7 +45,15 @@ const datagrafica = {
 };
 
 const { isLoading, error } = useQuery({
-  queryKey: ["Reporte movimientos"],
+  queryKey: [
+    "reporte movimientos",
+    {
+      año,
+      mes,
+      tipocategoria: tipo,
+      idusuario,
+    },
+  ],
   queryFn: () =>
     rptMovimientosAñoMes({
       año,
@@ -78,8 +91,8 @@ const { isLoading, error } = useQuery({
             </ul>
 
             <div className="tab-content">
-                {activeTab === 0 && <Dona datagrafica={datagrafica}/>}
-                {activeTab === 1 && <h1>Area 2</h1>}
+                {activeTab === 0 && <Dona datagrafica={datagrafica} data = {dataRptMovimientosAñoMes}/>}
+                {activeTab === 1 && <Lineal datagrafica={datagrafica} data = {dataRptMovimientosAñoMes}/>}
                 {activeTab === 2 && <h1>Area 3</h1>}
             </div>
          </Container>

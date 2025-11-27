@@ -1,12 +1,37 @@
 import styled from "styled-components";
-import { CalendarioLineal, Header, Tabs } from "../../index";
+import {v, CalendarioLineal, Header, Tabs, ContentFiltros, Btndesplegable, ListaMenuDesplegable, DataDesplegableMovimientos, useOperaciones, Btnfiltro } from "../../index";
 import { useState } from "react";
 import dayjs from "dayjs";
 
 export function InformesTemplate() {
+    const {
+      setTipo,
+      tipo,
+      colorCategoria,
+      año,
+      mes,
+      bgCategoria,
+      tituloBtnDes,
+      tituloBtnDesMovimientos,
+    } = useOperaciones();
+  const [stateTipo, setStateTipo] = useState(false);
   const [state, setState] = useState(false);
   const [value, setValue] = useState(dayjs(Date.now()));
   const [formatoFecha, setFormatoFecha] = useState("");
+  function openTipo() {
+    setStateTipo(!stateTipo);
+    setState(false);
+  }
+  function nuevoRegistro() {
+    SetopenRegistro(!openRegistro);
+    setAccion("Nuevo");
+    setdataSelect([]);
+  }
+  function cambiarTipo(p) {
+    setTipo(p);
+    setStateTipo(!stateTipo);
+    setState(false);
+  }
   return (
     <Container>
       <header className="header">
@@ -14,7 +39,30 @@ export function InformesTemplate() {
           stateConfig={{ state: state, setState: () => setState(!state) }}
         />
       </header>
-      <section className="area1"></section>
+      <section className="area1">
+           <ContentFiltros>
+                  <div
+                    onClick={(e) => {
+                      e.stopPropagation();
+                    }}
+                  >
+                    <Btndesplegable
+                      textcolor={colorCategoria}
+                      bgcolor={bgCategoria}
+                      text={tituloBtnDesMovimientos}
+                      funcion={openTipo}
+                    />
+                    {stateTipo && (
+                      <ListaMenuDesplegable
+                        data={DataDesplegableMovimientos}
+                        top="112%"
+                        funcion={(p) => cambiarTipo(p)}
+                      />
+                    )}
+                  </div>
+                </ContentFiltros>
+                <h1>Informes</h1>
+      </section>
       <section className="area2">
         <CalendarioLineal value={value}
         setValue={setValue}
@@ -50,6 +98,7 @@ const Container = styled.div`
     grid-area: area1;
     background-color: rgba(229, 67, 26, 0.14);
     display: flex;
+    gap: 20px;
     align-items: center;
   }
   .area2 {
@@ -63,4 +112,8 @@ const Container = styled.div`
     grid-area: main;
     background-color: rgba(179, 46, 241, 0.14);
   }
+`;
+const ContentFiltro = styled.div`
+  display: flex;
+  flex-wrap: wrap;
 `;

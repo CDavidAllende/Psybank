@@ -1,14 +1,30 @@
 import styled from "styled-components";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Doughnut } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
-ChartJS.register(ArcElement, Tooltip, Legend);
-
-export function Dona({datagrafica,data}) {
+export function Lineal({datagrafica,data}) {
   return (
     <Container>
       <section>
-        <Doughnut data={datagrafica}/>
+        <Line data={datagrafica}/>
       </section>
       <section>
         <h2>Gastos por categoria</h2>
